@@ -1,0 +1,228 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style ">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">Add Trading System</h4>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-1">
+                            <a routerLink="/dashboard/main">
+                                <i class="fas fa-home"></i> Home</a>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-2">
+                            <a href="#" onClick="return false;">Trading System</a>
+                        </li>
+                        <li class="breadcrumb-item active">Add</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            <strong>New Trading</strong>
+                        </h2>
+                        <ul class="header-dropdown m-r--5">
+                            <li class="dropdown">
+                                <a href="#" onClick="return false;" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li>
+                                        <a href="#" onClick="return false;">Action</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onClick="return false;">Another action</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onClick="return false;">Something else here</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="body">
+                        <mat-vertical-stepper [linear]="isLinear" #stepper>
+                            <!-- Trading System | Step -->
+                            <mat-step [stepControl]="formTradingSystem">
+                                <form [formGroup]="formTradingSystem">
+                                    <ng-template matStepLabel>Meu trading system</ng-template>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h6>Marque o que foi atingido</h6>
+                                            <mat-slide-toggle [color]="color" formControlName="question1" required>
+                                                É a onda 3 ou a onda 5?
+                                            </mat-slide-toggle>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <mat-slide-toggle formControlName="question2" required>
+                                                As três medias moveis estão apontando a favor da tendencia?
+                                            </mat-slide-toggle>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <mat-slide-toggle formControlName="question3" required>
+                                                As médias moveis estao em um angulo de 45 graus?
+                                            </mat-slide-toggle>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <mat-slide-toggle formControlName="question4" required>
+                                                O movimento esta uniforme?
+                                            </mat-slide-toggle>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <mat-slide-toggle formControlName="question5" required>
+                                                Tem noticia para as proximas 4 horas?
+                                            </mat-slide-toggle>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <mat-slide-toggle formControlName="question6" required>
+                                                Fez o rompimento do pivo?
+                                            </mat-slide-toggle>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <mat-slide-toggle formControlName="question7" required>
+                                                O movimento que originou o rompimento do pivo veio da media movel de 20?
+                                            </mat-slide-toggle>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <mat-slide-toggle formControlName="question8" required>
+                                                Tem volume bem acima da media?
+                                            </mat-slide-toggle>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <mat-slide-toggle formControlName="question9" required>
+                                                É uma reversao ao alvo de FIBO?
+                                            </mat-slide-toggle>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <mat-slide-toggle formControlName="question10" required>
+                                                O movimento maior(1D) esta na mesma direcao que sera executada a ordem?
+                                            </mat-slide-toggle>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <button mat-raised-button matStepperNext color="primary" [disabled]="!formTradingSystem.valid">Next</button>
+                                    </div>
+                                </form>
+                            </mat-step>
+                            <!-- #END# Trading System | Step -->
+                            <!-- Management Trading | Step -->
+                            <mat-step [stepControl]="formManagementTrading">
+                                <form [formGroup]="formManagementTrading" (ngSubmit)="onSubmit(formManagementTrading.value, stepper)">
+                                    <ng-template matStepLabel>Gerenciamento do trading</ng-template>
+                                    <div class="row mt-3">
+                                        <div class="col-4">
+                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                <mat-label>Entrada</mat-label>
+                                                <span matPrefix>
+                                                    <mat-icon class="mr-2">label</mat-icon>
+                                                </span>
+                                                <input name="entrada" matInput placeholder="EX: 100000.00" [dropSpecialCharacters]="false" [hiddenInput]="true"
+                                                    mask="000000.00" formControlName="entrada" required />
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-4">
+                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                <mat-label>Saida</mat-label>
+                                                <span matPrefix>
+                                                    <mat-icon class="mr-2">label</mat-icon>
+                                                </span>
+                                                <input matInput placeholder="EX: 100000.00" [dropSpecialCharacters]="false" [hiddenInput]="true"
+                                                    mask="000000.00" formControlName="saida" required />
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-4">
+                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                <mat-label>Stop</mat-label>
+                                                <span matPrefix>
+                                                    <mat-icon class="mr-2">stop</mat-icon>
+                                                </span>
+                                                <input matInput placeholder="EX: 100000.00" [dropSpecialCharacters]="false" [hiddenInput]="true"
+                                                    mask="000000.00" formControlName="stop" required />
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-4">
+                                            <h6>Ativo</h6>
+                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                <mat-label>Selecione</mat-label>
+                                                <mat-select formControlName="ativo" required>
+                                                    <mat-option value="WDO">WDO</mat-option>
+                                                    <mat-option value="WIN">WIN</mat-option>
+                                                </mat-select>
+                                                <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-4">
+                                            <section class="example-section">
+                                                <label class="example-margin">Movimento:</label>
+                                                <mat-radio-group formControlName="movimento" required>
+                                                    <mat-radio-button class="example-margin" value="ALTISTA" checked="checked">Altista</mat-radio-button>
+                                                    <mat-radio-button class="example-margin" value="BAIXISTA">Baixista
+                                                    </mat-radio-button>
+                                                </mat-radio-group>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button mat-raised-button matStepperPrevious color="warn"
+                                            class="mr-2">Back</button>
+                                        <!-- <button mat-raised-button matStepperNext [disabled]="!formManagementTrading.valid" color="primary" type="submit">Next</button> -->
+                                        <button mat-raised-button [disabled]="!formManagementTrading.valid" color="primary" type="submit">Next</button>
+                                    </div>
+                                </form>
+                            </mat-step>
+                            <!-- #END# Management Trading | Step -->
+                            <!-- Autorizado | Step -->
+                            <mat-step>
+                                <ng-template matStepLabel>Autorização</ng-template>
+                                <p>{{mensagem}}
+                                    <br>Valor do lote = {{ numeroDeContratos }}
+                                </p>
+                                <div _ngcontent-sea-c214="" class="row">
+                                    <div _ngcontent-sea-c214="" class="col-md-2">
+
+                                        <img _ngcontent-mou-c365="" alt="attachment" src="assets/images/pages/{{imagem}}" class="img-thumbnail img-responsive">
+                                    </div>
+                                </div>
+                                <div>
+                                    <button mat-raised-button matStepperPrevious color="warn" class="mr-2">Back</button>
+                                    <!-- <button mat-raised-button color="primary" (click)="stepper.reset()" class="mr-2">Reset</button> -->
+                                    <button mat-raised-button color="primary">Trading Init</button>
+                                </div>
+                            </mat-step>
+                            <!-- #END# Autorizado | Step -->
+                        </mat-vertical-stepper>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
